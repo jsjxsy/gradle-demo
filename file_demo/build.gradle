@@ -1,0 +1,33 @@
+def targetFile = new File('readme.txt')
+
+def srcFile = new File('readme2.txt')
+task taskC << {
+    targetFile.eachLine {
+        String oneLine ->
+            println oneLine
+    }
+
+    String str = new String(targetFile.getBytes())
+    println str
+
+
+    def ism = targetFile.newInputStream()
+    ism.close()//操作ism，最后记得关闭
+
+    targetFile.withInputStream {
+       InputStream ism1 ->
+            ism1.close()//操作ism，最后记得关闭
+    }
+
+    srcFile.mkdir();
+    srcFile.withOutputStream {
+        os ->
+            targetFile.withInputStream {
+                ins ->
+                    os << ins//利用outputstream操作符重载
+
+            }
+    }
+
+
+}

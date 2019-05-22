@@ -1,0 +1,19 @@
+// 需要继承自DefaultTask
+class HelloWorldTask extends DefaultTask {
+    // @Optional 表示在配置该Task时，message是可选的。
+    //@Optional
+    String message = 'I am kaku'
+    // @TaskAction 表示该Task要执行的动作,即在调用该Task时，hello()方法将被执行
+    @TaskAction
+    def hello(){
+        println "hello world $message"
+    }
+}
+
+// hello使用了默认的message值
+task hello(type:HelloWorldTask)
+
+// 重新设置了message的值
+task helloOne(type:HelloWorldTask){
+    message ="I am a android developer"
+}

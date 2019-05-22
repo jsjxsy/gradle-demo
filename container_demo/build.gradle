@@ -1,0 +1,24 @@
+def aList = [5, 'string', true]
+aList[10] = 10
+assert aList[9] == null
+//集合取值通过索引，如果索引越界，list 字节在该索引出添加元素（null）
+task taskTest << {
+    println aList[1] + ":" + aList[4] + ":list size:" + aList.size() + ":"
+}
+
+
+
+def aMap = ['key1': 'value', 'key2': 12]
+def bMap = [key1: 'value', key2: true]//默认key1会转化成'key1'
+
+def key1 = 'wowo'
+def cMap = [(key1): 'value', 'key2': 22]
+cMap.anotherKey = "I am map"
+
+
+def aRange = 1..5 //1 2 3 4 5
+def bRange = 2..<6 //不包含6这个元素
+
+task taskB << {
+    println aRange.from + ":" + aRange.to
+}

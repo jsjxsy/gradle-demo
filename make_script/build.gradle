@@ -1,0 +1,32 @@
+apply plugin: 'groovy'
+
+println name //Project对象的属性
+println project.name
+println project.description
+println project.parent
+println project.path
+
+//def dest{
+//    String name = "dest is string";
+//}
+
+def dest = "dest"
+task copy(type: Copy) << {
+    from "source"
+    into dest
+    println "--->"+dest
+}
+
+//
+
+task scriptTask << {
+        println "this is script task"
+}
+
+
+
+
+
+
+
+//gradle -q check

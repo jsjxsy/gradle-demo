@@ -1,0 +1,50 @@
+def aClosure = {
+    String args1, int args2 ->  //箭头前面是参数，后面是代码
+        println args1 + ":" + args2
+}
+
+
+aClosure.call("this is string", 100)
+aClosure("this is test", 10)
+
+def bClosure = {
+    it ->
+        "hello,$it!"
+}
+
+bClosure.call()
+
+//没有参数的闭包
+def cClosure = {
+    ->
+    println true
+}
+
+cClosure()
+//每一个元素都调用closure，closure（类似回调函数）
+public static <T> List<T>each(List<T> self,Closure closure) {
+    closure()
+}
+
+def aList = [1,2,3]
+task taskB << {
+    cClosure()
+    aList.each{
+        println it
+    }
+
+    dClosure(10,{
+        println 'this is test'
+    })
+    //省略括号
+    dClosure 10, {
+        println 'this is test B'
+    }
+}
+
+
+def dClosure(int a1,Closure closure) {
+    closure()//调用闭包
+}
+
+
